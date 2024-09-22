@@ -6,14 +6,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
+using Microsoft.Extensions.Configuration;
+
 
 namespace DataAccessLayer
 {
     public class DapperRepository<T> : IRepository<T> where T : Student, IDomainObject, new()
     {
-        private static string connectionString = "Host=localhost;Port=5432;Database=students;Username=postgres;Password=David800;";
-        private NpgsqlConnection db = new NpgsqlConnection(connectionString);
-
+        private static string connectionString;
+        private NpgsqlConnection db;
+        /// <summary>
+        /// Инициализирует новый экземпляр класса DapperRepository.
+        /// </summary>
+        public DapperRepository()
+        {
+            connectionString = GetConnectionString();
+            db = new NpgsqlConnection(connectionString);
+        }
         /// <summary>
         /// Создает новую запись в базе данных на основе переданного объекта.
         /// </summary>
@@ -107,6 +116,23 @@ namespace DataAccessLayer
                 connection.Open();
                 connection.Execute(sql);
             }
+        }
+        private string GetConnectionString()
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+            IConfiguration configuration = builder.Build();
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                throw new InvalidOperationException("Connection string 'DefaultConnection' not found in appsettings.json");
+            }
+
+            Console.WriteLine("Using connection string from appsettings.json");
+            return connectionString;
         }
     }
 }
