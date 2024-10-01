@@ -109,6 +109,15 @@ namespace DataAccessLayer
                 db?.Dispose();
             }
         }
+
+        /// <summary>
+        /// Выполняет произвольный SQL-запрос без возврата результатов.
+        /// </summary>
+        /// <param name="sql">SQL-запрос для выполнения.</param>
+        /// <remarks>
+        /// Этот метод открывает новое соединение с базой данных, выполняет указанный SQL-запрос
+        /// и автоматически закрывает соединение после выполнения. 
+        /// </remarks>
         public void ExecuteSQL(string sql)
         {
             using (var connection = new NpgsqlConnection(connectionString))
@@ -117,6 +126,15 @@ namespace DataAccessLayer
                 connection.Execute(sql);
             }
         }
+        /// <summary>
+        /// Получает строку подключения к базе данных из файла конфигурации appsettings.json.
+        /// </summary>
+        /// <returns>Строка подключения к базе данных.</returns>
+        /// <exception cref="InvalidOperationException">Выбрасывается, если строка подключения 'DefaultConnection' не найдена в appsettings.json.</exception>
+        /// <remarks>
+        /// Этот метод читает файл appsettings.json, извлекает строку подключения 'DefaultConnection'
+        /// и возвращает её. Если строка подключения не найдена, генерируется исключение.
+        /// </remarks>
         private string GetConnectionString()
         {
             var builder = new ConfigurationBuilder()

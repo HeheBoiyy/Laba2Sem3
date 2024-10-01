@@ -1,10 +1,36 @@
 ﻿using Model;
 using DataAccessLayer;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
 namespace BusinessLogic
 {
     public class Logic
     {
-        IRepository<Student> repository = new DapperRepository<Student>();
+        private readonly IRepository<Student> repository;
+        public Logic()
+        {
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .Build();
+
+            string framework = configuration["DataAccessFramework"];
+            string connectionString = configuration.GetConnectionString("DefaultConnection");
+
+            repository = framework switch
+            {
+                "Dapper" => new DapperRepository<Student>(),
+                "EntityFramework" => new EFRepository<Student>(CreateDbContext(connectionString)),
+                _ => throw new ArgumentException("Неподдерживаемый фреймворк доступа к данным")
+            };
+        }
+
+        private AppDbContext CreateDbContext(string connectionString)
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
+            optionsBuilder.UseNpgsql(connectionString);
+            return new AppDbContext(optionsBuilder.Options);
+        }
         /// <summary>
         /// Метод получения студента по ID
         /// </summary>
@@ -129,12 +155,28 @@ namespace BusinessLogic
             if (repository is DapperRepository<Student> dapperRepository)
             {
                 dapperRepository.ExecuteSQL(@"
-            SELECT setval(pg_get_serial_sequence('students', 'id'), 
-            (SELECT COALESCE(MAX(id),0) FROM students), false);");
+                SELECT setval(pg_get_serial_sequence('students', 'id'), 
+                (SELECT COALESCE(MAX(id),0) FROM students), false);");
+            }
+            else if (repository is EFRepository<Student>)
+            {
+                var configuration = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                    .Build();
+
+                string connectionString = configuration.GetConnectionString("DefaultConnection");
+
+                using (var context = CreateDbContext(connectionString))
+                {
+                    context.Database.ExecuteSqlRaw(@"
+                    SELECT setval(pg_get_serial_sequence('students', 'id'), 
+                    (SELECT COALESCE(MAX(id),0) FROM students), false);");
+                }
             }
             else
             {
-                throw new NotSupportedException("Текущий репозиторий не поддерживает прямое выполнение SQL-запросов.");
+                throw new NotSupportedException("Текущий репозиторий не поддерживает сброс последовательности ID.");
             }
         }
     }
