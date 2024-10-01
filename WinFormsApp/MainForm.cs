@@ -1,9 +1,10 @@
 using BusinessLogic;
+using System.Diagnostics;
 namespace WinFormsApp
 {
     public partial class MainForm : Form
     {
-        
+
         private Logic logic = new Logic();
         /// <summary>
         /// Инициализирует новый экземпляр формы MainForm.
@@ -63,8 +64,8 @@ namespace WinFormsApp
         /// <param name="e">Аргументы события.</param>
         private void btnRemoveStudent_Click(object sender, EventArgs e)
         {
-            try 
-            { 
+            try
+            {
                 var selectedItem = listViewStudents.SelectedItems[0];
                 int studentId = int.Parse(selectedItem.SubItems[0].Text);
                 logic.RemoveStudent(studentId);
@@ -74,7 +75,7 @@ namespace WinFormsApp
             {
                 MessageBox.Show("Выберите студента для удаления.");
             }
-            
+
         }
         /// <summary>
         /// Обрабатывает нажатие кнопки обновления данных студента.
@@ -115,7 +116,7 @@ namespace WinFormsApp
         private void btnShowDistribution_Click(object sender, EventArgs e)
         {
             try { logic.GetSpecialityDistribution(); }
-            catch 
+            catch
             {
                 MessageBox.Show("Ошибка! Невозможно получить распределение.");
                 return;
@@ -138,6 +139,15 @@ namespace WinFormsApp
                 item.SubItems.Add(student[3]);
                 listViewStudents.Items.Add(item);
             }
+        }
+        /// <summary>
+        /// Перенаправляет на сайт сфу при нажатии текста на главной форме
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void label1_Click(object sender, EventArgs e)
+        {
+            Process.Start(new ProcessStartInfo { FileName = @"https://structure.sfu-kras.ru/ikit", UseShellExecute = true });
         }
     }
 }

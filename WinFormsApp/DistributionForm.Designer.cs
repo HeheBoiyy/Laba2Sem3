@@ -37,12 +37,15 @@
             // 
             // chartSpeciality
             // 
+            chartSpeciality.BackColor = Color.DarkOrange;
+            chartSpeciality.BorderlineColor = Color.WhiteSmoke;
             chartArea1.Name = "ChartArea1";
             chartSpeciality.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             chartSpeciality.Legends.Add(legend1);
             chartSpeciality.Location = new Point(18, 15);
             chartSpeciality.Name = "chartSpeciality";
+            chartSpeciality.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Chocolate;
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
@@ -55,13 +58,14 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.DarkOrange;
             ClientSize = new Size(800, 450);
             Controls.Add(chartSpeciality);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "DistributionForm";
-            Text = "Form1";
+            Text = "Гистаграмма студентов";
             ((System.ComponentModel.ISupportInitialize)chartSpeciality).EndInit();
             ResumeLayout(false);
         }
