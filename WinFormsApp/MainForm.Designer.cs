@@ -34,13 +34,14 @@
             button3 = new Button();
             button4 = new Button();
             label1 = new Label();
+            UpdateListBtn = new Button();
             SuspendLayout();
             // 
             // listViewStudents
             // 
             listViewStudents.Location = new Point(12, 90);
             listViewStudents.Name = "listViewStudents";
-            listViewStudents.Size = new Size(501, 345);
+            listViewStudents.Size = new Size(501, 322);
             listViewStudents.TabIndex = 0;
             listViewStudents.UseCompatibleStateImageBehavior = false;
             // 
@@ -99,12 +100,24 @@
             label1.Text = "Деканат Pro Max ++";
             label1.Click += label1_Click;
             // 
+            // UpdateListBtn
+            // 
+            UpdateListBtn.Font = new Font("Russo One", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            UpdateListBtn.Location = new Point(12, 418);
+            UpdateListBtn.Name = "UpdateListBtn";
+            UpdateListBtn.Size = new Size(131, 23);
+            UpdateListBtn.TabIndex = 6;
+            UpdateListBtn.Text = "Обновить список";
+            UpdateListBtn.UseVisualStyleBackColor = true;
+            UpdateListBtn.Click += UpdateListBtn_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkOrange;
             ClientSize = new Size(800, 450);
+            Controls.Add(UpdateListBtn);
             Controls.Add(label1);
             Controls.Add(button4);
             Controls.Add(button3);
@@ -128,5 +141,6 @@
         private Button button3;
         private Button button4;
         private Label label1;
+        private Button UpdateListBtn;
     }
 }

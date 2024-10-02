@@ -149,5 +149,14 @@ namespace WinFormsApp
         {
             Process.Start(new ProcessStartInfo { FileName = @"https://structure.sfu-kras.ru/ikit", UseShellExecute = true });
         }
+        /// <summary>
+        /// Обновляет список студентов по нажатию кнопки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UpdateListBtn_Click(object sender, EventArgs e)
+        {
+            RefreshStudentList();
+        }
     }
 }
