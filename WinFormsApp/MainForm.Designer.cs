@@ -35,22 +35,25 @@
             button4 = new Button();
             label1 = new Label();
             UpdateListBtn = new Button();
+            button5 = new Button();
             SuspendLayout();
             // 
             // listViewStudents
             // 
-            listViewStudents.Location = new Point(12, 90);
+            listViewStudents.Location = new Point(14, 120);
+            listViewStudents.Margin = new Padding(3, 4, 3, 4);
             listViewStudents.Name = "listViewStudents";
-            listViewStudents.Size = new Size(501, 322);
+            listViewStudents.Size = new Size(572, 428);
             listViewStudents.TabIndex = 0;
             listViewStudents.UseCompatibleStateImageBehavior = false;
             // 
             // button1
             // 
             button1.Font = new Font("Russo One", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            button1.Location = new Point(559, 90);
+            button1.Location = new Point(639, 120);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(200, 23);
+            button1.Size = new Size(229, 31);
             button1.TabIndex = 1;
             button1.Text = "Добавить студента";
             button1.UseVisualStyleBackColor = true;
@@ -59,9 +62,10 @@
             // button2
             // 
             button2.Font = new Font("Russo One", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            button2.Location = new Point(559, 129);
+            button2.Location = new Point(639, 172);
+            button2.Margin = new Padding(3, 4, 3, 4);
             button2.Name = "button2";
-            button2.Size = new Size(200, 23);
+            button2.Size = new Size(229, 31);
             button2.TabIndex = 2;
             button2.Text = "Удалить выбранного студента";
             button2.UseVisualStyleBackColor = true;
@@ -70,9 +74,10 @@
             // button3
             // 
             button3.Font = new Font("Russo One", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            button3.Location = new Point(559, 168);
+            button3.Location = new Point(639, 224);
+            button3.Margin = new Padding(3, 4, 3, 4);
             button3.Name = "button3";
-            button3.Size = new Size(200, 23);
+            button3.Size = new Size(229, 31);
             button3.TabIndex = 3;
             button3.Text = "Изменить выбранного студента";
             button3.UseVisualStyleBackColor = true;
@@ -81,9 +86,10 @@
             // button4
             // 
             button4.Font = new Font("Russo One", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            button4.Location = new Point(559, 376);
+            button4.Location = new Point(639, 501);
+            button4.Margin = new Padding(3, 4, 3, 4);
             button4.Name = "button4";
-            button4.Size = new Size(200, 59);
+            button4.Size = new Size(229, 79);
             button4.TabIndex = 4;
             button4.Text = "Гистаграмма";
             button4.UseVisualStyleBackColor = true;
@@ -93,9 +99,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Peace Sans", 35.9999962F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label1.Location = new Point(113, 9);
+            label1.Location = new Point(129, 12);
             label1.Name = "label1";
-            label1.Size = new Size(523, 67);
+            label1.Size = new Size(653, 83);
             label1.TabIndex = 5;
             label1.Text = "Деканат Pro Max ++";
             label1.Click += label1_Click;
@@ -103,20 +109,32 @@
             // UpdateListBtn
             // 
             UpdateListBtn.Font = new Font("Russo One", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            UpdateListBtn.Location = new Point(12, 418);
+            UpdateListBtn.Location = new Point(14, 557);
+            UpdateListBtn.Margin = new Padding(3, 4, 3, 4);
             UpdateListBtn.Name = "UpdateListBtn";
-            UpdateListBtn.Size = new Size(131, 23);
+            UpdateListBtn.Size = new Size(150, 31);
             UpdateListBtn.TabIndex = 6;
             UpdateListBtn.Text = "Обновить список";
             UpdateListBtn.UseVisualStyleBackColor = true;
             UpdateListBtn.Click += UpdateListBtn_Click;
             // 
+            // button5
+            // 
+            button5.Location = new Point(774, 2);
+            button5.Name = "button5";
+            button5.Size = new Size(137, 29);
+            button5.TabIndex = 7;
+            button5.Text = "Фуфелшмерц?";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkOrange;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
+            Controls.Add(button5);
             Controls.Add(UpdateListBtn);
             Controls.Add(label1);
             Controls.Add(button4);
@@ -125,6 +143,7 @@
             Controls.Add(button1);
             Controls.Add(listViewStudents);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "MainForm";
@@ -142,5 +161,6 @@
         private Button button4;
         private Label label1;
         private Button UpdateListBtn;
+        private Button button5;
     }
 }

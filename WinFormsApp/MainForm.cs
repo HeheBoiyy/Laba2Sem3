@@ -158,5 +158,11 @@ namespace WinFormsApp
         {
             RefreshStudentList();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var fufelform = new Fufel();
+            fufelform.ShowDialog();
+        }
     }
 }

@@ -7,6 +7,10 @@ namespace BusinessLogic
     public class Logic
     {
         private readonly IRepository<Student> repository;
+        /// <summary>
+        /// Конструктор для Logic в котором происходит считывание строки DataAccessFramework и происходит выбор фреймворка
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public Logic()
         {
             var configuration = new ConfigurationBuilder()
@@ -24,7 +28,11 @@ namespace BusinessLogic
                 _ => throw new ArgumentException("Неподдерживаемый фреймворк доступа к данным")
             };
         }
-
+        /// <summary>
+        /// Создание DB Context (только для EF Framework)
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <returns></returns>
         private AppDbContext CreateDbContext(string connectionString)
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();

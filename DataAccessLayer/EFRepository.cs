@@ -15,7 +15,7 @@ namespace DataAccessLayer
     public class EFRepository<T> : IRepository<T> where T : Student, IDomainObject, new()
     {
         private readonly DbContext _context;
-        private readonly DbSet<T> _dbSet;
+
 
         /// <summary>
         /// Инициализирует новый экземпляр класса EFRepository.
@@ -23,65 +23,49 @@ namespace DataAccessLayer
         /// <param name="context">Контекст базы данных Entity Framework.</param>
         public EFRepository(DbContext context)
         {
-            _context = context;
-            _dbSet = context.Set<T>();
+            context.Set<T>();
         }
 
-        /// <summary>
-        /// Получает все сущности из базы данных.
-        /// </summary>
-        /// <returns>Коллекция всех сущностей типа T.</returns>
+        
         public IEnumerable<T> GetAll()
         {
-            return _dbSet.ToList();
+            return _context.Set<T>().ToList();
         }
 
-        /// <summary>
-        /// Получает сущность по её идентификатору.
-        /// </summary>
-        /// <param name="id">Идентификатор сущности.</param>
-        /// <returns>Сущность с указанным идентификатором или null, если сущность не найдена.</returns>
+        
         public T Get(int id)
         {
-            return _dbSet.Find(id);
+            return _context.Set<T>().Find(id);
         }
 
-        /// <summary>
-        /// Создает новую сущность в базе данных.
-        /// </summary>
-        /// <param name="entity">Сущность для создания.</param>
+        
         public void Create(T entity)
         {
-            _dbSet.Add(entity);
+            _context.Set<T>().Add(entity);
             Save();
         }
 
-        /// <summary>
-        /// Обновляет существующую сущность в базе данных.
-        /// </summary>
-        /// <param name="entity">Сущность для обновления.</param>
+        
         public void Update(T entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
             Save();
         }
 
-        /// <summary>
-        /// Удаляет сущность из базы данных по её идентификатору.
-        /// </summary>
-        /// <param name="id">Идентификатор сущности для удаления.</param>
+        
         public void Delete(int id)
         {
-            var entity = _dbSet.Find(id);
+            
+            var entity = _context.Set<T>().Find(id);
             if (entity != null)
             {
-                _dbSet.Remove(entity);
+                _context.Set<T>().Remove(entity);
                 Save();
             }
         }
 
         /// <summary>
-        /// Сохраняет все изменения в базе данных.
+        /// Сохранение изменений в БД
         /// </summary>
         public void Save()
         {

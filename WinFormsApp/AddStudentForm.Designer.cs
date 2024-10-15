@@ -42,40 +42,43 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Russo One", 11.2499981F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label1.Location = new Point(144, 9);
+            label1.Location = new Point(165, 12);
             label1.Name = "label1";
-            label1.Size = new Size(176, 18);
+            label1.Size = new Size(223, 23);
             label1.TabIndex = 0;
             label1.Text = "Добавление студента";
             // 
             // txtName
             // 
-            txtName.Location = new Point(117, 33);
+            txtName.Location = new Point(145, 43);
+            txtName.Margin = new Padding(3, 4, 3, 4);
             txtName.Name = "txtName";
-            txtName.Size = new Size(100, 23);
+            txtName.Size = new Size(114, 27);
             txtName.TabIndex = 1;
             // 
             // txtSpeciality
             // 
-            txtSpeciality.Location = new Point(117, 66);
+            txtSpeciality.Location = new Point(145, 87);
+            txtSpeciality.Margin = new Padding(3, 4, 3, 4);
             txtSpeciality.Name = "txtSpeciality";
-            txtSpeciality.Size = new Size(100, 23);
+            txtSpeciality.Size = new Size(114, 27);
             txtSpeciality.TabIndex = 2;
             // 
             // txtGroup
             // 
-            txtGroup.Location = new Point(117, 95);
+            txtGroup.Location = new Point(145, 126);
+            txtGroup.Margin = new Padding(3, 4, 3, 4);
             txtGroup.Name = "txtGroup";
-            txtGroup.Size = new Size(100, 23);
+            txtGroup.Size = new Size(114, 27);
             txtGroup.TabIndex = 3;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Russo One", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label2.Location = new Point(12, 41);
+            label2.Location = new Point(14, 55);
             label2.Name = "label2";
-            label2.Size = new Size(32, 14);
+            label2.Size = new Size(40, 18);
             label2.TabIndex = 4;
             label2.Text = "Имя";
             // 
@@ -83,9 +86,9 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Russo One", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label3.Location = new Point(12, 69);
+            label3.Location = new Point(14, 92);
             label3.Name = "label3";
-            label3.Size = new Size(103, 14);
+            label3.Size = new Size(125, 18);
             label3.TabIndex = 5;
             label3.Text = "Специальность";
             // 
@@ -93,18 +96,19 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Russo One", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label4.Location = new Point(12, 98);
+            label4.Location = new Point(14, 131);
             label4.Name = "label4";
-            label4.Size = new Size(52, 14);
+            label4.Size = new Size(62, 18);
             label4.TabIndex = 6;
             label4.Text = "Группа";
             // 
             // button1
             // 
             button1.Font = new Font("Russo One", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            button1.Location = new Point(117, 124);
+            button1.Location = new Point(134, 165);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(185, 23);
+            button1.Size = new Size(211, 31);
             button1.TabIndex = 7;
             button1.Text = "Добавить";
             button1.UseVisualStyleBackColor = true;
@@ -112,10 +116,10 @@
             // 
             // AddStudentForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkOrange;
-            ClientSize = new Size(450, 159);
+            ClientSize = new Size(514, 212);
             Controls.Add(button1);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -125,6 +129,7 @@
             Controls.Add(txtName);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "AddStudentForm";
